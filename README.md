@@ -53,6 +53,21 @@ N2, M2, S2, K2 (semidiurnal); M3 (terdiurnal). Bands are contiguous and
 non-overlapping: each species range is split at the midpoints between neighbouring
 constituents.
 
+## Plotting latitude variation
+
+From a repository checkout, install the plotting extra and run:
+
+```bash
+pip install -e ".[plot]"
+python plot_wavegroups.py
+```
+
+The script plots amplitude factors and phase leads for all 16 wave groups from
+90°S to 90°N. It uses the inelastic model by default; pass `--model elastic`
+to select the elastic model. To save PNGs instead of displaying them, pass
+`--output-prefix wavegroups`, which writes `wavegroups_amplitude.png` and
+`wavegroups_phase.png`.
+
 ## Method and limitations
 
 Please read before using these numbers in published work.
