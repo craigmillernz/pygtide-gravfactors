@@ -14,4 +14,5 @@ src/pygtide_gravfactors.egg-info/top_level.txt
 tests/test_constituents.py
 tests/test_love.py
 tests/test_model.py
+tests/test_plot_wavegroups.py
 tests/test_pygtide_integration.py

@@ -1,10 +1,10 @@
 Metadata-Version: 2.4
 Name: pygtide-gravfactors
 Version: 0.1.0
-Summary: Gravimetric factors and phase lags of 16 tidal constituents (elastic and inelastic Earth) for PyGTide wave groups, based on DDW model and IERS2010 conventions.
-Author: Craig Miller and pygtide-gravfactors contributors
+Summary: Gravimetric factors and phase lags of 16 tidal constituents (elastic and inelastic Earth) for PyGTide wave groups
+Author: pygtide-gravfactors contributors
 License-Expression: MIT
-Keywords: earth tides,gravimetric factor,love numbers,pygtide,geophysics,gsolve
+Keywords: earth tides,gravimetric factor,love numbers,pygtide,geophysics
 Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Science/Research
 Classifier: Programming Language :: Python :: 3
@@ -19,9 +19,16 @@ License-File: LICENSE
 Requires-Dist: numpy>=1.21
 Provides-Extra: test
 Requires-Dist: pytest>=7; extra == "test"
+Provides-Extra: plot
+Requires-Dist: matplotlib>=3.7; extra == "plot"
 Dynamic: license-file
 
 # pygtide-gravfactors
+
+| | Status |
+|---|---|
+| License | [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) |
+| Tests | [![Tests](https://img.shields.io/github/actions/workflow/status/craigmillernz/pygtide-gravfactors/tests.yml?branch=main&label=tests)](https://github.com/craigmillernz/pygtide-gravfactors/actions/workflows/tests.yml) |
 
 Gravimetric amplitude factors (δ) and phases for 16 tidal constituents, for an
 elastic and an inelastic (anelastic-mantle) Earth, packaged as ready-to-use
@@ -76,6 +83,21 @@ N2, M2, S2, K2 (semidiurnal); M3 (terdiurnal). Bands are contiguous and
 non-overlapping: each species range is split at the midpoints between neighbouring
 constituents.
 
+## Plotting latitude variation
+
+From a repository checkout, install the plotting extra and run:
+
+```bash
+pip install -e ".[plot]"
+python plot_wavegroups.py
+```
+
+The script plots amplitude factors and phase leads for all 16 wave groups from
+90°S to 90°N. It uses the inelastic model by default; pass `--model elastic`
+to select the elastic model. To save PNGs instead of displaying them, pass
+`--output-prefix wavegroups`, which writes `wavegroups_amplitude.png` and
+`wavegroups_phase.png`.
+
 ## Method and limitations
 
 Please read before using these numbers in published work.
@@ -113,9 +135,40 @@ verified in `tests/test_pygtide_integration.py`.
 ## Development
 
 ```bash
-pip install -e ".[test]" pygtide
+pip install -e ".[test,plot]" pygtide
 pytest
 ```
+
+## Releasing to PyPI
+
+Before the first release, configure a [PyPI trusted publisher](https://docs.pypi.org/trusted-publishers/):
+
+- Project name: `pygtide-gravfactors`
+- GitHub owner: `craigmillernz`
+- Repository: `pygtide-gravfactors`
+- Workflow: `publish.yml`
+- Environment: `pypi`
+
+For a new PyPI project, use a pending publisher; for an existing project, add
+the publisher in its publishing settings. Create the `pypi` environment in
+GitHub and consider requiring approval before publishing. No PyPI API token is
+needed.
+
+The package version is maintained manually in `pyproject.toml`. For a release:
+
+1. Update `project.version` and commit the change.
+2. Run the tests and push the release commit.
+3. Create and push an annotated Git tag matching the version, for example:
+
+   ```bash
+   git tag -a v0.1.1 -m "Release v0.1.1"
+   git push origin v0.1.1
+   ```
+
+Pushing the tag runs the test matrix, builds and checks the wheel and source
+distribution, and publishes them to PyPI if the tests pass and the tag matches
+the package version. It does not create a GitHub release. PyPI does not allow
+reusing a version that has already been published.
 
 ## License
 
