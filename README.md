@@ -1,5 +1,10 @@
 # pygtide-gravfactors
 
+| | Status |
+|---|---|
+| License | [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) |
+| Tests | [![Tests](https://img.shields.io/github/actions/workflow/status/craigmillernz/pygtide-gravfactors/tests.yml?branch=main&label=tests)](https://github.com/craigmillernz/pygtide-gravfactors/actions/workflows/tests.yml) |
+
 Gravimetric amplitude factors (δ) and phases for 16 tidal constituents, for an
 elastic and an inelastic (anelastic-mantle) Earth, packaged as ready-to-use
 [PyGTide](https://github.com/hydrogeoscience/pygtide) wave groups.
@@ -108,6 +113,21 @@ verified in `tests/test_pygtide_integration.py`.
 pip install -e ".[test,plot]" pygtide
 pytest
 ```
+
+## Versioning
+
+The package version is maintained manually in `pyproject.toml`. For a release:
+
+1. Update `project.version` and commit the change.
+2. Run the tests and push the release commit.
+3. Create and push an annotated Git tag matching the version, for example:
+
+   ```bash
+   git tag -a v0.1.1 -m "Release v0.1.1"
+   git push origin v0.1.1
+   ```
+
+Tagging does not automatically publish the package or create a GitHub release.
 
 ## License
 
