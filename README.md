@@ -114,7 +114,20 @@ pip install -e ".[test,plot]" pygtide
 pytest
 ```
 
-## Versioning
+## Releasing to PyPI
+
+Before the first release, configure a [PyPI trusted publisher](https://docs.pypi.org/trusted-publishers/):
+
+- Project name: `pygtide-gravfactors`
+- GitHub owner: `craigmillernz`
+- Repository: `pygtide-gravfactors`
+- Workflow: `publish.yml`
+- Environment: `pypi`
+
+For a new PyPI project, use a pending publisher; for an existing project, add
+the publisher in its publishing settings. Create the `pypi` environment in
+GitHub and consider requiring approval before publishing. No PyPI API token is
+needed.
 
 The package version is maintained manually in `pyproject.toml`. For a release:
 
@@ -127,7 +140,10 @@ The package version is maintained manually in `pyproject.toml`. For a release:
    git push origin v0.1.1
    ```
 
-Tagging does not automatically publish the package or create a GitHub release.
+Pushing the tag runs the test matrix, builds and checks the wheel and source
+distribution, and publishes them to PyPI if the tests pass and the tag matches
+the package version. It does not create a GitHub release. PyPI does not allow
+reusing a version that has already been published.
 
 ## License
 
