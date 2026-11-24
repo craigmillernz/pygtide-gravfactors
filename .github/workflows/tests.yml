@@ -19,5 +19,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
       - run: python -m pip install --upgrade pip
-      - run: python -m pip install -e ".[test,plot]" pygtide
+      - run: python -m pip install -e ".[test,plot]"
+      # PyGTide currently cannot build or import on macOS/Windows with Python 3.15.
+      - if: matrix.python-version != '3.15' || matrix.os == 'ubuntu-latest'
+        run: python -m pip install pygtide
       - run: python -m pytest
