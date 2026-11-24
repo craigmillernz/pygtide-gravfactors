@@ -105,7 +105,7 @@ verified in `tests/test_pygtide_integration.py`.
 ## Development
 
 ```bash
-pip install -e ".[test]" pygtide
+pip install -e ".[test,plot]" pygtide
 pytest
 ```
 
