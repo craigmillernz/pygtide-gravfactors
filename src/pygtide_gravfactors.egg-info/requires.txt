@@ -1,7 +1,0 @@
-numpy>=1.21
-
-[plot]
-matplotlib>=3.7
-
-[test]
-pytest>=7
