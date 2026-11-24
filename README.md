@@ -4,6 +4,7 @@
 |---|---|
 | License | [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) |
 | Tests | [![Tests](https://img.shields.io/github/actions/workflow/status/craigmillernz/pygtide-gravfactors/tests.yml?branch=main&label=tests)](https://github.com/craigmillernz/pygtide-gravfactors/actions/workflows/tests.yml) |
+| PyPI | [![PyPI version](https://img.shields.io/pypi/v/pygtide-gravfactors)](https://pypi.org/project/pygtide-gravfactors/) |
 
 Gravimetric amplitude factors (δ) and phases for 16 tidal constituents, for an
 elastic and an inelastic (anelastic-mantle) Earth, packaged as ready-to-use
